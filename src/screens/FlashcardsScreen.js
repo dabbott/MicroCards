@@ -7,6 +7,7 @@ import HeaderButtons, {
   Item
 } from "react-navigation-header-buttons";
 import FlipCard from "../components/FlipCard";
+import AnnotationContainer from "../components/AnnotationContainer";
 
 export default class FlashcardsScreen extends React.Component {
   static navigationOptions = ({
@@ -64,6 +65,9 @@ export default class FlashcardsScreen extends React.Component {
             </View>
           )}
         />
+        <AnnotationContainer>
+          <View style={{ width: 300, height: 300, backgroundColor: "teal" }} />
+        </AnnotationContainer>
       </View>
     );
   }
