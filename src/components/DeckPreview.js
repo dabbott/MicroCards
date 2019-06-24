@@ -12,19 +12,22 @@ import shadows from "../shadows";
 import CustomTouchable from "./CustomTouchable";
 
 export default function DeckPreview(props) {
-  const { title } = props;
+  const { title, color, thumbnail, onPress } = props;
+
+  const imageBackgroundStyle = {
+    backgroundColor: color
+  };
 
   return (
-    <CustomTouchable onPress={() => {}}>
+    <CustomTouchable onPress={onPress}>
       <View style={styles.container}>
-        <View style={styles.imageContainer}>
-          <Image
-            style={styles.image}
-            source={require("../../assets/spain.png")}
-          />
+        <View style={[styles.imageContainer, imageBackgroundStyle]}>
+          <Image style={styles.image} source={{ uri: thumbnail }} />
         </View>
         <Spacer size={10} />
-        <Text style={styles.title}>{title}</Text>
+        <Text numberOfLines={2} style={styles.title}>
+          {title}
+        </Text>
       </View>
     </CustomTouchable>
   );
@@ -33,11 +36,10 @@ export default function DeckPreview(props) {
 const styles = StyleSheet.create({
   container: {
     width: 88,
-    height: 140,
     padding: 4
   },
   imageContainer: {
-    flex: 1,
+    height: 120,
     ...shadows.medium,
     overflow: "visible",
     borderRadius: 10,

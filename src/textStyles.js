@@ -2,7 +2,7 @@ import colors from "./colors";
 
 export default {
   label: {
-    fontSize: 20,
+    fontSize: 16,
     color: colors.text
   },
   title: {},

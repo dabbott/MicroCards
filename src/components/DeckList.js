@@ -12,17 +12,31 @@ const ItemSeparatorComponent = () => {
 
 export default class DeckList extends React.Component {
   renderItem = ({ item }) => {
-    return <DeckPreview title={item.id} />;
+    const { onPress } = this.props;
+    const { title, color, thumbnail } = item;
+
+    return (
+      <DeckPreview
+        title={title}
+        color={color}
+        thumbnail={thumbnail}
+        onPress={() => {
+          onPress(item.id);
+        }}
+      />
+    );
   };
 
   render() {
+    const { decks } = this.props;
+
     return (
       <View style={styles.container}>
         <Text style={styles.title}>POPULAR LANGUAGES</Text>
         <FlatList
           style={styles.list}
           horizontal
-          data={[{ id: "1" }, { id: "2" }, { id: "3" }, { id: "4" }]}
+          data={decks}
           renderItem={this.renderItem}
           keyExtractor={keyExtractor}
           ItemSeparatorComponent={ItemSeparatorComponent}

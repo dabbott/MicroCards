@@ -19,6 +19,9 @@ import {
 } from "react-native";
 import DeckPreview from "./src/components/DeckPreview";
 import DeckList from "./src/components/DeckList";
+import Navigator from "./src/Navigator";
+
+import data from "./db.json";
 
 const instructions = Platform.select({
   ios: "Hello! Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -34,11 +37,13 @@ export default class App extends Component<Props> {
 
     const color = "pink";
 
-    return (
-      <SafeAreaView style={styles.container}>
-        <DeckList />
-      </SafeAreaView>
-    );
+    return <Navigator screenProps={{ data }} />;
+
+    // return (
+    //   <SafeAreaView style={styles.container}>
+    //     <DeckList />
+    //   </SafeAreaView>
+    // );
   }
 }
 
