@@ -1,0 +1,91 @@
+{
+  "cards": [
+    {
+      "id": "spanish1",
+      "language1Text": "Hello",
+      "language2Text": "Hola"
+    },
+    {
+      "id": "spanish2",
+      "language1Text": "Goodbye",
+      "language2Text": "Adiós"
+    }
+  ],
+  "decks": [
+    {
+      "id": "deck1",
+      "title": "Spanish",
+      "color": "#0252B4",
+      "thumbnail": "http://localhost:3000/spain.png",
+      "cardIds": ["spanish1", "spanish2"],
+      "language1": "English",
+      "language2": "Spanish"
+    },
+    {
+      "id": "deck2",
+      "title": "French",
+      "color": "#FFDA44",
+      "thumbnail": "http://localhost:3000/france.png",
+      "cardIds": ["spanish1", "spanish2"],
+      "language1": "English",
+      "language2": "Spanish"
+    },
+    {
+      "id": "deck3",
+      "title": "Italian",
+      "color": "#43781C",
+      "thumbnail": "http://localhost:3000/italy.png",
+      "cardIds": ["spanish1", "spanish2"],
+      "language1": "English",
+      "language2": "Spanish"
+    },
+    {
+      "id": "deck4",
+      "title": "Chinese",
+      "color": "#B40202",
+      "thumbnail": "http://localhost:3000/china.png",
+      "cardIds": ["spanish1", "spanish2"],
+      "language1": "English",
+      "language2": "Spanish"
+    },
+    {
+      "id": "deck5",
+      "title": "Japanese",
+      "color": "#F38600",
+      "thumbnail": "http://localhost:3000/japan.png",
+      "cardIds": ["spanish1", "spanish2"],
+      "language1": "English",
+      "language2": "Spanish"
+    },
+    {
+      "id": "deck6",
+      "title": "Russian",
+      "color": "#FFDA44",
+      "thumbnail": "http://localhost:3000/russia.png",
+      "cardIds": ["spanish1", "spanish2"],
+      "language1": "English",
+      "language2": "Spanish"
+    },
+    {
+      "id": "deck7",
+      "title": "Korean",
+      "color": "#0252B4",
+      "thumbnail": "http://localhost:3000/south-korea.png",
+      "cardIds": ["spanish1", "spanish2"],
+      "language1": "English",
+      "language2": "Spanish"
+    }
+  ],
+  "catalogs": [
+    {
+      "id": "catalog1",
+      "title": "Asian Languages",
+      "deckIds": ["deck4", "deck5", "deck7"]
+    },
+    {
+      "id": "catalog2",
+      "title": "European Languages",
+      "deckIds": ["deck1", "deck2", "deck3"]
+    }
+  ]
+}
