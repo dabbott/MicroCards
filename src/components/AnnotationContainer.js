@@ -56,16 +56,13 @@ export default class AnimationContainer extends Component {
                 position: "absolute",
                 width: 20,
                 height: 20,
-                fontSize: 16,
-                transform: [
-                  { translateX: this.state.layout.width * annotation.x - 10 },
-                  {
-                    translateY:
-                      this.state.layout.height * annotation.y -
-                      Header.HEIGHT -
-                      10
-                  }
-                ]
+                fontSize: 16
+                // transform: [
+                //   { translateX: this.state.layout.width * annotation.x },
+                //   {
+                //     translateY: this.state.layout.height * annotation.y
+                //   }
+                // ]
               }}
             >
               ⭐️
@@ -98,9 +95,12 @@ export default class AnimationContainer extends Component {
   // When the touch/mouse is lifted
   handlePanResponderEnd = (e, gestureState) => {
     const { x0, y0, dx, dy } = gestureState;
+    const {
+      nativeEvent: { locationX, locationY }
+    } = e;
 
-    const x = (x0 + dx - this.state.layout.x) / this.state.layout.width;
-    const y = (y0 + dy - this.state.layout.y) / this.state.layout.height;
+    const x = locationX / this.state.layout.width;
+    const y = locationY / this.state.layout.height;
 
     this.setState({
       annotations: [...this.state.annotations, { x, y }]

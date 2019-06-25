@@ -36,6 +36,12 @@ export default class DeckScreen extends React.Component {
       <View style={{ flex: 1 }}>
         <DeckCatalog onPress={this.handlePressDeck} data={data} />
         <CustomTouchable
+          hitSlop={{
+            top: 10,
+            right: 10,
+            bottom: 10,
+            left: 10
+          }}
           style={{
             position: "absolute",
             right: 30,

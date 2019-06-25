@@ -50,6 +50,7 @@ export default class DeckCatalog extends React.Component {
 
 const styles = StyleSheet.create({
   list: {
-    flex: 1
+    flex: 1,
+    backgroundColor: "white"
   }
 });

@@ -10,17 +10,18 @@ import {
 } from "react-native";
 
 export default function CustomTouchable(props) {
-  const { onPress, ...rest } = props;
+  const { onPress, hitSlop, ...rest } = props;
 
   return Platform.select({
     android: (
       <TouchableNativeFeedback
         background={TouchableNativeFeedback.SelectableBackground()}
+        hitSlop={hitSlop}
         onPress={onPress}
       >
         <View {...rest} />
       </TouchableNativeFeedback>
     ),
-    default: <TouchableOpacity onPress={onPress} {...rest} />
+    default: <TouchableOpacity hitSlop={hitSlop} onPress={onPress} {...rest} />
   });
 }
