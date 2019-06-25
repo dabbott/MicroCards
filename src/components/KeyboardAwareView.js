@@ -6,11 +6,18 @@ import {
   StyleSheet,
   Keyboard,
   Platform,
-  LayoutAnimation
+  LayoutAnimation,
+  UIManager
 } from "react-native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
+if (Platform.OS === "android") {
+  UIManager.setLayoutAnimationEnabledExperimental &&
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
 const INITIAL_ANIMATION_DURATION = 250;
+const INITIAL_EASING = LayoutAnimation.Types.easeInEaseOut;
 
 export default class KeyboardAwareView extends React.Component {
   state = {
@@ -19,7 +26,8 @@ export default class KeyboardAwareView extends React.Component {
     keyboardVisible: false,
     keyboardWillShow: false,
     keyboardWillHide: false,
-    keyboardAnimationDuration: INITIAL_ANIMATION_DURATION
+    keyboardAnimationDuration: INITIAL_ANIMATION_DURATION,
+    keyboardEasing: INITIAL_EASING
   };
 
   handleLayout = e => {
@@ -37,15 +45,19 @@ export default class KeyboardAwareView extends React.Component {
         Keyboard.addListener("keyboardWillHide", this.handleWillHide)
       ];
     } else {
+      this.subscriptions = [
+        Keyboard.addListener("keyboardDidShow", this.handleDidShow),
+        Keyboard.addListener("keyboardDidHide", this.handleDidHide)
+      ];
     }
   }
 
   componentDidUpdate() {
-    const { keyboardAnimationDuration } = this.state;
+    const { keyboardAnimationDuration, keyboardEasing } = this.state;
 
     const config = LayoutAnimation.create(
       keyboardAnimationDuration,
-      LayoutAnimation.Types.keyboard,
+      keyboardEasing,
       LayoutAnimation.Properties.opacity
     );
 
@@ -88,12 +100,14 @@ export default class KeyboardAwareView extends React.Component {
   measure = event => {
     const {
       endCoordinates: { height },
-      duration = INITIAL_ANIMATION_DURATION
+      duration = INITIAL_ANIMATION_DURATION,
+      easing = INITIAL_EASING
     } = event;
 
     this.setState({
       keyboardHeight: height,
-      keyboardAnimationDuration: duration
+      keyboardAnimationDuration: duration,
+      keyboardEasing: easing
     });
   };
 
@@ -111,9 +125,13 @@ export default class KeyboardAwareView extends React.Component {
       height:
         layout.height -
         (keyboardWillShow || (keyboardVisible && !keyboardWillHide)
-          ? keyboardHeight
+          ? Platform.OS === "ios"
+            ? keyboardHeight
+            : 0
           : 0)
     };
+
+    console.log(layout.height, keyboardHeight);
 
     return (
       <View style={style} onLayout={this.handleLayout}>

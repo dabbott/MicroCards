@@ -1,7 +1,10 @@
 import React from "react";
-import { requireNativeComponent, processColor } from "react-native";
-
-const NativePieChart = requireNativeComponent("PieChartView");
+import PropTypes from "prop-types";
+import {
+  requireNativeComponent,
+  processColor,
+  ColorPropType
+} from "react-native";
 
 export default function PieChart() {
   return (
@@ -21,3 +24,16 @@ export default function PieChart() {
     />
   );
 }
+
+PieChart.propTypes = {
+  strokeWidth: PropTypes.number,
+  strokeColor: ColorPropType,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      size: PropTypes.number.isRequired,
+      color: ColorPropType
+    })
+  )
+};
+
+const NativePieChart = requireNativeComponent("PieChartView", PieChart);

@@ -4,7 +4,9 @@ import {
   TextInput,
   ScrollView,
   KeyboardAvoidingView,
-  Dimensions
+  Dimensions,
+  TouchableOpacity,
+  Text
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
@@ -62,6 +64,16 @@ export default class CreateScreen extends React.Component {
             style={{ backgroundColor: "white", fontSize: 24, padding: 24 }}
           />
         </ScrollView>
+        <TouchableOpacity
+          style={{
+            height: 80,
+            backgroundColor: "red",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <Text style={{ color: "white", fontSize: 30 }}>Create card</Text>
+        </TouchableOpacity>
       </KeyboardAwareView>
     );
   }

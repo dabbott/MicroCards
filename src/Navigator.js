@@ -21,6 +21,7 @@ const Decks = createStackNavigator(
     CreateFlow
   },
   {
+    mode: "modal",
     headerMode: "none",
     navigationOptions: {
       title: "Hello"

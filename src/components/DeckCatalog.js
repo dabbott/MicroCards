@@ -4,7 +4,7 @@ import Spacer from "./Spacer";
 import textStyles from "../textStyles";
 import DeckPreview from "./DeckPreview";
 import DeckList from "./DeckList";
-import PieChart from "./PieChart";
+// import PieChart from "./PieChart";
 
 const keyExtractor = item => item.id;
 
@@ -28,7 +28,7 @@ const ListHeaderComponent = () => {
         alignItems: "center"
       }}
     >
-      <PieChart />
+      {/* <PieChart /> */}
     </View>
   );
 };
