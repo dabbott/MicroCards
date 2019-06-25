@@ -13,16 +13,15 @@ const ItemSeparatorComponent = () => {
 export default class DeckList extends React.Component {
   renderItem = ({ item }) => {
     const { onPress } = this.props;
-    const { title, color, thumbnail } = item;
+    const { id, title, color, thumbnail } = item;
 
     return (
       <DeckPreview
+        id={id}
         title={title}
         color={color}
         thumbnail={thumbnail}
-        onPress={() => {
-          onPress(item.id);
-        }}
+        onPress={onPress}
       />
     );
   };

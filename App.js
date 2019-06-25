@@ -15,35 +15,60 @@ import {
   View,
   Image,
   SafeAreaView,
-  BackHandler
+  BackHandler,
+  AsyncStorage
 } from "react-native";
 import DeckPreview from "./src/components/DeckPreview";
 import DeckList from "./src/components/DeckList";
 import Navigator from "./src/Navigator";
 
-import data from "./db.json";
+const ASYNC_STORAGE_KEY = "APP_DATA";
 
-const instructions = Platform.select({
-  ios: "Hello! Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
-  android:
-    "Double tap R on your keyboard to reload,\n" +
-    "Shake or press menu button for dev menu"
-});
+export default class App extends Component {
+  state = {
+    data: {}
+  };
 
-type Props = {};
-export default class App extends Component<Props> {
+  async componentDidMount() {
+    try {
+      const value = await AsyncStorage.getItem(ASYNC_STORAGE_KEY);
+      if (value !== null) {
+        this.setState({ data: JSON.parse(value) });
+        return;
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+
+    const promises = [
+      fetch("http://localhost:3000/catalogs").then(result => result.json()),
+      fetch("http://localhost:3000/decks").then(result => result.json()),
+      fetch("http://localhost:3000/cards").then(result => result.json())
+    ];
+
+    const [catalogsJson, decksJson, cardsJson] = await Promise.all(promises);
+
+    const data = {
+      catalogs: catalogsJson,
+      decks: decksJson,
+      cards: cardsJson
+    };
+
+    this.setState({
+      data: data
+    });
+
+    try {
+      await AsyncStorage.setItem(ASYNC_STORAGE_KEY, JSON.stringify(data));
+    } catch (error) {
+      // Error saving data
+    }
+  }
+
   render() {
-    const shouldShowBorder = true;
-
-    const color = "pink";
+    const { data } = this.state;
 
     return <Navigator screenProps={{ data }} />;
-
-    // return (
-    //   <SafeAreaView style={styles.container}>
-    //     <DeckList />
-    //   </SafeAreaView>
-    // );
   }
 }
 

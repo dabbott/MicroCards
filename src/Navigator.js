@@ -28,4 +28,4 @@ const Decks = createStackNavigator(
   }
 );
 
-export default createAppContainer(CreateFlow);
+export default createAppContainer(Decks);

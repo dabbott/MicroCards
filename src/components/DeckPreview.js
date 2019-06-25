@@ -11,26 +11,37 @@ import textStyles from "../textStyles";
 import shadows from "../shadows";
 import CustomTouchable from "./CustomTouchable";
 
-export default function DeckPreview(props) {
-  const { title, color, thumbnail, onPress } = props;
+export default class DeckPreview extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
-  const imageBackgroundStyle = {
-    backgroundColor: color
+  handlePress = () => {
+    const { id, onPress } = this.props;
+    onPress(id);
   };
 
-  return (
-    <CustomTouchable onPress={onPress}>
-      <View style={styles.container}>
-        <View style={[styles.imageContainer, imageBackgroundStyle]}>
-          <Image style={styles.image} source={{ uri: thumbnail }} />
+  render() {
+    const { title, color, thumbnail, onPress } = this.props;
+
+    const imageBackgroundStyle = {
+      backgroundColor: color
+    };
+
+    return (
+      <CustomTouchable onPress={this.handlePress}>
+        <View style={styles.container}>
+          <View style={[styles.imageContainer, imageBackgroundStyle]}>
+            <Image style={styles.image} source={{ uri: thumbnail }} />
+          </View>
+          <Spacer size={10} />
+          <Text numberOfLines={2} style={styles.title}>
+            {title}
+          </Text>
         </View>
-        <Spacer size={10} />
-        <Text numberOfLines={2} style={styles.title}>
-          {title}
-        </Text>
-      </View>
-    </CustomTouchable>
-  );
+      </CustomTouchable>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

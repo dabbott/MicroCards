@@ -6,6 +6,8 @@ import {
   KeyboardAvoidingView,
   Dimensions
 } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+
 import DeckCatalog from "../components/DeckCatalog";
 import CustomTouchable from "../components/CustomTouchable";
 import textStyles from "../textStyles";
