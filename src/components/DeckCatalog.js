@@ -4,6 +4,7 @@ import Spacer from "./Spacer";
 import textStyles from "../textStyles";
 import DeckPreview from "./DeckPreview";
 import DeckList from "./DeckList";
+import PieChart from "./PieChart";
 
 const keyExtractor = item => item.id;
 
@@ -18,7 +19,18 @@ const ItemSeparatorComponent = () => {
 };
 
 const ListHeaderComponent = () => {
-  return <View style={{ height: 300, backgroundColor: "lightblue" }} />;
+  return (
+    <View
+      style={{
+        height: 300,
+        backgroundColor: "lightblue",
+        justifyContent: "center",
+        alignItems: "center"
+      }}
+    >
+      <PieChart />
+    </View>
+  );
 };
 
 export default class DeckCatalog extends React.Component {
