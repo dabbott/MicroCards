@@ -4,15 +4,21 @@ import { Text } from "react-native";
 import { createAppContainer, createStackNavigator } from "react-navigation";
 import DeckScreen from "./screens/DeckScreen";
 import FlashcardsScreen from "./screens/FlashcardsScreen";
+import CreateScreen from "./screens/CreateScreen";
 
 const Flashcards = createStackNavigator({
   FlashcardScreen: FlashcardsScreen
 });
 
+const CreateFlow = createStackNavigator({
+  CreateScreen: CreateScreen
+});
+
 const Decks = createStackNavigator(
   {
     DeckScreen,
-    Flashcards
+    Flashcards,
+    CreateFlow
   },
   {
     headerMode: "none",
@@ -22,4 +28,4 @@ const Decks = createStackNavigator(
   }
 );
 
-export default createAppContainer(Decks);
+export default createAppContainer(CreateFlow);

@@ -52,7 +52,7 @@ export default class DeckScreen extends React.Component {
             borderRadius: 54 / 2
           }}
           onPress={() => {
-            navigation.navigate("FlashcardScreen");
+            navigation.navigate("CreateFlow");
           }}
         />
       </View>
